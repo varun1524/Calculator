@@ -54,6 +54,7 @@ class HomePage extends Component{
                     }
                     else {
                         msg = "Error: " + data.message;
+                        console.log(data.message)
                     }
                     this.setState(
                         state.calculator = {
