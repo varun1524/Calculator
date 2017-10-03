@@ -52,11 +52,10 @@ router.post('/doCalculate', function (req, res, next) {
     }
     catch (e)
     {
-        req.body.message = e;
+        req.body.message = e.message;
         req.body.answer=null;
         req.body.operationStatus = false;
         console.log(e.message);
-        console.log(e);
         console.log(e.stack);
     }
     console.log("After Calculation:");
