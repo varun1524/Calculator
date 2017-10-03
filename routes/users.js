@@ -10,37 +10,50 @@ router.get('/', function(req, res, next) {
 router.post('/doCalculate', function (req, res, next) {
     try {
         console.log(req.body);
-        var val1=req.body.value1;
-        var val2=req.body.value2;
-        if(isNaN(val1) || isNaN(val2))
+
+        if(isNaN(req.body.value1) || isNaN(req.body.value2))
         {
-            throw "Incorrect Input Values. Please enter Numeric values only"
+            req.body.answer=null;
+            throw ("Incorrect Input Values. Please enter Numeric values only");
         }
-        switch (req.body.operation) {
-            case '+':
-                req.body.answer = parseFloat(req.body.value1) + parseFloat(req.body.value2);
-                req.body.operationStatus = true;
-                break;
-            case '-':
-                req.body.answer = parseFloat(req.body.value1) - parseFloat(req.body.value2);
-                req.body.operationStatus = true;
-                break;
-            case '*':
-                req.body.answer = parseFloat(req.body.value1) * parseFloat(req.body.value2);
-                req.body.operationStatus = true;
-                break;
-            case '/':
-                req.body.answer = parseFloat(req.body.value1) / parseFloat(req.body.value2);
-                req.body.operationStatus = true;
-                break;
-            default:
-                console.log("Error in Calculating result");
-                break
+        else
+        {
+            var val1 = parseFloat(req.body.value1);
+            var val2 = parseFloat(req.body.value2);
+            var operation = req.body.operation;
+            if(parseFloat(val2)===0 && req.body.operation==="/"){
+                req.body.answer=null;
+                throw ("Denominator cannot be 0.");
+            }
+            else {
+                switch (operation) {
+                    case '+':
+                        req.body.answer = val1 + val2;
+                        req.body.operationStatus = true;
+                        break;
+                    case '-':
+                        req.body.answer = val1 - val2;
+                        req.body.operationStatus = true;
+                        break;
+                    case '*':
+                        req.body.answer = val1 * val2;
+                        req.body.operationStatus = true;
+                        break;
+                    case '/':
+                        req.body.answer = val1 / val2;
+                        req.body.operationStatus = true;
+                        break;
+                    default:
+                        console.log("Error in Calculating result");
+                        break
+                }
+            }
         }
     }
     catch (e)
     {
         req.body.message = e;
+        req.body.answer=null;
         req.body.operationStatus = false;
         console.log(e.message);
         console.log(e);
