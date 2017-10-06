@@ -12,7 +12,6 @@ class HomePage extends Component{
                 value2: '',
                 operation: '',
                 answer: '',
-                operationStatus: false,
                 message: '',
                 inputError:''
             }
@@ -33,7 +32,7 @@ class HomePage extends Component{
 
         this.setState((state)=>{
             state.calculator = {
-                ...state.calculator,
+                ...this.state.calculator,
                 operation : operator,
                 message : ""
             };
@@ -46,25 +45,137 @@ class HomePage extends Component{
                 console.log("Error");
             }
             else {
-                API.doCalculate(state.calculator).then((data) => {
-                    let msg;
-                    state.calculator.message="";
-                    if (data.operationStatus) {
-                        msg = data.message;
-                    }
-                    else {
-                        msg = "Error: " + data.message;
-                        console.log(data.message)
-                    }
-                    this.setState(
-                        state.calculator = {
-                            ...state.calculator,
-                            answer: data.answer,
-                            operationStatus: data.operationStatus,
-                            message: msg
-                        }
-                    );
-                });
+
+                switch (operator){
+                    case '+':
+                        API.doAdd(state.calculator).then((response) =>
+                        {
+                            if(response.status===200){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                            else if(response.status===400){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                        });
+                        break;
+                    case '-':
+                        API.doSub(state.calculator).then((response) =>
+                        {
+                            if(response.status===200){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                            else if(response.status===400){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                        });
+                        break;
+                    case '*':
+                        API.doMul(state.calculator).then((response) =>
+                        {
+                            if(response.status===200){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                            else if(response.status===400){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                        });
+                        break;
+                    case '/':
+                        API.doDiv(state.calculator).then((response) =>
+                        {
+                            if(response.status===200){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                            else if(response.status===301){
+                                response.json().then((data) => {
+                                    console.log(data);
+                                    state.calculator.message="";
+                                    this.setState(
+                                        state.calculator = {
+                                            ...this.state.calculator,
+                                            answer: data.answer,
+                                            message: data.message
+                                        }
+                                    );
+                                });
+                            }
+                        });
+                        break;
+                    default:
+                        break;
+                }
+
+
             }
         });
     };
@@ -93,7 +204,6 @@ class HomePage extends Component{
                                                 type="text"
                                                 placeholder="Enter Value 1: "
                                                 value={this.state.calculator.value1}
-                                                pattern="[0-9]+" title="Numeric Values"
                                                 required
                                                 onChange={(event) => {
                                                     this.setState({
