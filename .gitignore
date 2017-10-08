@@ -1,0 +1,35 @@
+# See https://help.github.com/ignore-files/ for more about ignoring files.
+
+# dependencies
+/calculatorclient/node_modules
+/calculatorserver/node_modules
+
+# testing
+/calculatorclient/coverage
+/calculatorserver/coverage
+
+# production
+/calculatorclient/build
+/calculatorserver/build
+
+# misc
+/calculatorclient/.DS_Store
+/calculatorclient/.env.local
+/calculatorclient/.env.development.local
+/calculatorclient/.env.test.local
+/calculatorclient/.env.production.local
+/calculatorserver/.DS_Store
+/calculatorserver/.env.local
+/calculatorserver/.env.development.local
+/calculatorserver/.env.test.local
+/calculatorserver/.env.production.local
+
+
+/calculatorserver/npm-debug.log*
+/calculatorserver/yarn-debug.log*
+/calculatorserver/yarn-error.log*
+/calculatorserver/npm-debug.log*
+/calculatorserver/yarn-debug.log*
+/calculatorserver/yarn-error.log*
+
+
