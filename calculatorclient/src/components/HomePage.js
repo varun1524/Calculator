@@ -194,11 +194,12 @@ class HomePage extends Component{
                             <div className="panel panel-primary">
                                 <div className="panel-body">
                                     <form className="form-horizontal">
-                                        <div className="panel-heading">
-                                            <h1 className="bg-primary">Calculator</h1>
+                                        <div className="panel-heading" align="center">
+                                            <h1 className="bg bg-primary" align="center">Calculator</h1>
                                         </div>
-                                        <div className="form-group">
-                                            <label className="col-sm-4 col-md-4 col-lg-4">Value 1:</label>
+                                        <div className="form-group" align="center">
+                                            <label className="col-sm-4 col-md-4 col-lg-4
+                                            col-lg-offset-2 col-md-offset-2 col-sm-offset-2">Value 1:</label>
                                             <input
                                                 className="input-sm col-sm-4 col-md-4 col-lg-4"
                                                 type="text"
@@ -216,7 +217,8 @@ class HomePage extends Component{
                                             />
                                         </div>
                                         <div className="form-group">
-                                            <label className="col-sm-4 col-md-4 col-lg-4">Value 2:</label>
+                                            <label className="col-sm-4 col-md-4 col-lg-4
+                                            col-lg-offset-2 col-md-offset-2 col-sm-offset-2">Value 2:</label>
                                             <input
                                                 className="input-sm col-sm-4 col-md-4 col-lg-4"
                                                 type="text"
